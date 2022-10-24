@@ -9,11 +9,12 @@
 - **DFRobot Gravity URM37 v5**
 
 ### Infrared sensors:
-- 
+- **Sharp GP2Y0A41SK0F**
+- **Sharp GP2Y0A21YK0F**
 
 ### Time of Flight sensors:
-*Can't be used with 16 Mhz Arduino boards.*
-- **Pololu VL53L3CX**
+- **GY-VL53L0X**
+- **Pololu VL53L3CX**: *because of the way it works, the sensor can't be used with 16 Mhz AVR Arduino boards.*
 
 ## Testing conditions:
 ### Locations:
