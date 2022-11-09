@@ -38,29 +38,56 @@
 # Review of results:
 
 ## HC-SR04
-### How to fix the problem with freezing?
-There are many variants of this sensor. However, chepest version has issues you can read about here: http://www.therandomlab.com/2015/05/repair-and-solve-faulty-hc-sr04.html **to be honest using it without the proposed solutions is worthless.**
-- Use the included code according to mentioned article (it's in comment section!).
-- Solder the 10k resistor according to the picture.
-- Other solution I found personally: Use quick and dirty solution to reset the sensor by switching it on and off via transistor. Use it only with long intervals of measurements, you probably decrease its lifetime by a significant value.
+Before using this sensor, **lower your expectations, otherwise the disappointment will hit you hard. People who praises the quality of sensor use them in particular case measuring large and flat objects.** Sensor gives a good result if it gets them, which is difficult.
 
 ### Maximum range:
-- **Depending on vendor's datasheet it has up to 4 meters range but there is no way to use it effectively for distance over approx 2 meters unless you measure a distance to a large flat object or a wall.**
-- If your project is controlled via hand or on a desk 120cm is perfect.
+- **Depending on vendor's datasheet it has up to 4 meters range but there is no way to use it effectively for distance over approx 2 meters unless you measure a distance to a large flat object like a car or a wall.**
+- If your project is controlled via hand, after 50cm it will have difficulties detecting it.
 - 250cm is fine to measure a person walking toward your project.
 - Blind spot is below 5cm.
 
+### How to fix the problem with hanging?
+There are many variants of this sensor. However, chepest version has issues you can read about here: http://www.therandomlab.com/2015/05/repair-and-solve-faulty-hc-sr04.html **to be honest using it without the proposed solutions is worthless.**
+- Use the included code according to mentioned article (it's in comment section!). I made some modifications to it.
+- Solder the 10k resistor according to the picture.
+- Add 100uf capacitor.
+- Other solution I found personally: Use quick and dirty solution to reset the sensor by switching it on and off via transistor. Use it only with long intervals of measurements, you probably decrease its lifetime by a significant value.
+
+There is a library named New Ping. Notice how single and multiple sensors are declared.
+
 ### Notes:
 - *Using the New Ping library without any fixes seems resonable with the HC-SR04 from Sparkfun, other (the cheapest) will eventually hang and return zeroes.*
-- *On greater distances sensor will sometimes returns zeroes no matter what. Depending on project you can discard the zeroes or measure an average of values.*
-- **Sensor is fine in most cases (but not all), especially for university projects if used correctly. Otherwise it will be unbearable.**
+- *The sensor will sometimes returns zeroes no matter what. Depending on project you can discard the zeroes or measure an average of values. Using constrains in your code to limit the distance only to what you want to measure - for example hand between 5cm and 50cm.*
+- **Sensor is fine for learning or very basic in most cases (but not all), especially for university projects if used correctly. Otherwise it will be unbearable.**
 - *It can't measure thin objects and catches noise from narrow and messy locations. Based on my experience some soft materials are a challenge.*
 - *Reading many sensors can be slow. Computing averages of results to reduce noise would be even slower.*
 - *Hacks mentioned makes the sensor work louder, you can hear the clicks.*
+- *The sensor accuracy can be improved with thermometer (speed of sound vary with changes in air temperature).*
 
 ## DFRobot Gravity URM07
+https://wiki.dfrobot.com/URM07-UART_Ultrasonic_Sensor_SKU__SEN0153
+### Maximum range: 
+**20-750cm**
+### Notes:
+- *URM07 has built-in temperature sensor.*
+- *URM07 communicates via Serial.*
+- *Detecting angle is 60 degrees, it's important if you intentionally want to detect surrounding things.*
+- *You can have many of sensors on single bus by changing their addresses.*
+
 ## DFRobot Gravity URM09
+https://wiki.dfrobot.com/URM09_Ultrasonic_Sensor_(Gravity-I2C)_(V1.0)_SKU_SEN0304
+### Maximum range:
+**2-500cm** There are different ranges 150, 300, 500. According to documentation lower range will reduce sensitivity.
+### Notes:
+- *URM09 communicates via i2c. It also has its analog equivalent.*
+
 ## DFRobot Gravity URM37 v5
+https://wiki.dfrobot.com/URM37_V5.0_Ultrasonic_Sensor_SKU_SEN0001_
+### Maximum range:
+**2-800cm**
+### Notes:
+- *URM37 communicates via Serial but it has various operation modes.It has additional features comparing to DFRobot sensors mentioned above.*
+- *Has a button to switch from Serial (TTL) to RS232 communication. Do not play with that!*
 
 ## Sharp GP2Y0A41SK0F and Sharp GP2Y0A21YK0F
 *Sensors are similar.*
