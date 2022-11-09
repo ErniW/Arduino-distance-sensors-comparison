@@ -58,8 +58,8 @@ There is a library named New Ping. Notice how single and multiple sensors are de
 ### Notes:
 - *Using the New Ping library without any fixes seems resonable with the HC-SR04 from Sparkfun, other (the cheapest) will eventually hang and return zeroes.*
 - *The sensor will sometimes returns zeroes no matter what. Depending on project you can discard the zeroes or measure an average of values. Using constrains in your code to limit the distance only to what you want to measure - for example hand between 5cm and 50cm.*
-- **Sensor is fine for learning or very basic in most cases (but not all), especially for university projects if used correctly. Otherwise it will be unbearable.**
-- *It can't measure thin objects and catches noise from narrow and messy locations. Based on my experience some soft materials are a challenge.*
+- **Sensor is fine for learning or very basic usage in most cases (but not all). Otherwise it will be unbearable. You should aim for different sensor when trying to control something with hands or detect small objects.**
+- *It can't measure thin objects and catches noise from narrow and messy locations. Based on my experience many soft materials are a challenge.*
 - *Reading many sensors can be slow. Computing averages of results to reduce noise would be even slower.*
 - *Hacks mentioned makes the sensor work louder, you can hear the clicks.*
 - *The sensor accuracy can be improved with thermometer (speed of sound vary with changes in air temperature).*
