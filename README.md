@@ -18,6 +18,9 @@
 - **GY-VL53L0X**
 - **Pololu VL53L3CX**: *There are no Arduino libraries or registers documentation available. Tested on STM32F446RE and STM32duino.*
 
+### Gesture sensors:
+- **APDS-9930**: *Usable sensor to detect Left/Right/Forward/Back/Up/Down gestures.*
+
 ## Testing conditions:
 ### Locations:
 - Open space.
@@ -81,6 +84,7 @@ https://wiki.dfrobot.com/URM09_Ultrasonic_Sensor_(Gravity-I2C)_(V1.0)_SKU_SEN030
 **2-500cm** There are different ranges 150, 300, 500. According to documentation lower range will reduce sensitivity?
 ### Notes:
 - *URM09 communicates via i2c. It also has its analog equivalent available to purchase.*
+- *URM09 has built-in temperature sensor.*
 
 ## DFRobot Gravity URM37 v5
 https://wiki.dfrobot.com/URM37_V5.0_Ultrasonic_Sensor_SKU_SEN0001_
@@ -88,7 +92,8 @@ https://wiki.dfrobot.com/URM37_V5.0_Ultrasonic_Sensor_SKU_SEN0001_
 **2-800cm**
 ### Notes:
 - *URM37 communicates via Serial but it has various operation modes. It has additional features comparing it to other DFRobot sensors mentioned above.*
-- *Has a button to switch from Serial (TTL) to RS232 communication. Do not play with that!*
+- *URM37 has built-in temperature sensor.*
+- *URM37 has a button to switch from Serial (TTL) to RS232 communication. Do not play with that!*
 
 ## Sharp GP2Y0A41SK0F and Sharp GP2Y0A21YK0F
 *Sensors are similar.*
@@ -121,7 +126,7 @@ TODO: Figure out how to calibrate the sensor to check the difference. Without ca
 - *You can use Adafruit library.*
 - *Straightforward usage is a plus. You can choose between long range and high accuracy modes.*
 - *Long range or high speed mode is not suitable for outdoor daylight. Outdoor usage cuts the accuracy and distance dramatically (Datasheet 5.3 Ranging Accuracy). Direct exposure to light can create noise in measurements.*
-- *High accuracy mode is slow and even in that mode the value floats +/- 3mm so eventually the fact that sensor returns distance in milimeters won't give you that much.*
+- *High accuracy mode is slow and even in that mode the value floats +/- 3mm so eventually the fact that sensor returns distance in milimeters won't give you that much. Maybe computing averages in faster modes make sense? Measurement frequency is faster than ultrasonic sensor.*
 - *It is possible to calibrate the sensor but guidance is not provided through Adafruit library.*
 
 ## Pololu VL53L3CX
@@ -139,3 +144,12 @@ Because of the way it works, **the sensor can't be used with Arduino boards at a
 - *Actually the address 0x12 is assigned on runtime. Default i2c address is 0x52. You don't need to change it.*
 - *VL53L3CX pins aren't 5V compatible. Pololu board has voltage regulator but they wrote that XSHUT and GPIO1 aren't level-shifted.*
 - *TODO: add calibration code.*
+
+## APDS-9930
+Measurement distance is up to 100mm (in my opinion it's up to 150mm), however the **measurements are raw density values not distance units.**
+
+It can measure up/down/left/right gestures and near/far when using proximity data.
+
+### Notes:
+- **Sensor operates in 3.3V logic, do not connect to 5V. SDA and SCL will work on 5V however it's not recommended (you can use logic-level converter).**
+- *There are libraries from Adafruit, Sparkfun and Arduino. Their example code looks similar. Some of them use interrupts so you can respond immediately whenever an event occurs instead of polling for it.* **Sparkfun library includes near/far gesture based on hand distance.**
