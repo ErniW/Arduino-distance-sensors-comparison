@@ -35,36 +35,24 @@ void Queue::push(int val){
 
   length++;
 
-  if(!head){
+  if(isEmpty()){
     head = newNode;
     tail = newNode;
-
     return;
   }
 
-  head->prev = newNode;
-  newNode->next = head;
-  head = newNode;
-
-  //if(!head) 
+  tail->next = newNode;
+  tail = newNode;
 }
 
 int Queue::pop(){
-  int value = tail->value;
+  int value = head->value;
   length--;
 
-  if(tail == head){
-    delete tail;
-    tail = nullptr;
-    head = nullptr;
-    return value;
-  }
-
-  Node* newTail = tail->prev;
-  delete tail;
-
-  newTail->next = nullptr;
-  tail = newTail;
+  Node* temp = head->next;
+  delete head;
+  head = temp;
+  
   return value;
 }
 
