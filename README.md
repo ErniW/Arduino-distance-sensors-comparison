@@ -5,7 +5,6 @@
 ## Sensors tested:
 ### Ultrasonic sensors:
 - **HC-SR04**: We had two kinds of these. We've tested various tricks to improve their measurements.
-- **Sparkfun HC-SR04**: to compare the quality with cheaper ones. *Is it worth it?*
 - **DFRobot Gravity URM07**
 - **DFRobot Gravity URM09**
 - **DFRobot Gravity URM37 v5**
@@ -19,7 +18,7 @@
 - **Pololu VL53L3CX**: *There are no Arduino libraries or registers documentation available. Tested on STM32F446RE and STM32duino.*
 
 ### Gesture sensors:
-- **APDS-9930**: *Usable sensor to detect Left/Right/Forward/Back/Up/Down gestures.*
+- **APDS-9960**: *Detects Left/Right/Forward/Back/Up/Down gestures.*
 
 ## Testing conditions:
 ### Locations:
@@ -50,7 +49,7 @@ Before using this sensor, **lower your expectations, otherwise the disappointmen
 - If your project is controlled via hand, after 50cm it will have difficulties detecting it.
 - 250cm is fine to measure a person walking toward your project.
 
-### How to fix the problem with hanging?
+### How to fix the problem with hanging zeroes?
 There are many variants of this sensor. However, chepest version has issues you can read about here: http://www.therandomlab.com/2015/05/repair-and-solve-faulty-hc-sr04.html **to be honest using it without the proposed solutions is worthless.**
 - Use the included code according to mentioned article (it's in comment section!). I made some modifications to it.
 - Solder the 10k resistor according to the picture.
@@ -145,11 +144,13 @@ Because of the way it works, **the sensor can't be used with Arduino boards at a
 - *VL53L3CX pins aren't 5V compatible. Pololu board has voltage regulator but they wrote that XSHUT and GPIO1 aren't level-shifted.*
 - *TODO: add calibration code.*
 
-## APDS-9930
-Measurement distance is up to 100mm (in my opinion it's up to 150mm), however the **measurements are raw density values not distance units.**
+## APDS-9960
+Measurement distance is up to 100mm (in my opinion it's up to 150mm), however the **measurements are raw IR light density values not distance units.**
 
 It can measure up/down/left/right gestures and near/far when using proximity data.
 
 ### Notes:
-- **Sensor operates in 3.3V logic, do not connect to 5V. SDA and SCL will work on 5V however it's not recommended (you can use logic-level converter).**
-- *There are libraries from Adafruit, Sparkfun and Arduino. Their example code looks similar. Some of them use interrupts so you can respond immediately whenever an event occurs instead of polling for it.* **Sparkfun library includes near/far gesture based on hand distance.**
+- **Sensor operates in 3.3V logic, do not connect VCC to 5V. SDA and SCL will work on 5V however it's not recommended (you can use logic-level converter).**
+- *There are libraries from Adafruit, Sparkfun and Arduino. Their example code looks similar. Some of them use interrupts so you can respond immediately whenever an event occurs instead of polling for it.* **Sparkfun library includes near/far gesture based on hand distance but Arduino library looks like is not blocking the main loop.**
+- *Within the libraries it seems that measuring proximity and gestures doesn't play well with each other.*
+- **PAJ7620U2** *seems to be an alternative, it computes the gesture internally?*
