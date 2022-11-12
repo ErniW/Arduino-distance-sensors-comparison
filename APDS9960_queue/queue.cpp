@@ -15,6 +15,16 @@ Queue::Queue(int max){
   this->lastTimeActive = 0;
 }
 
+Queue::~Queue(){
+  Node* current = head;
+
+  while(current){
+    Node* next = current->next;
+    delete current;
+    current = next;
+  }
+}
+
 void Queue::push(int val){
   if(isFull()) {
     Serial.println("Queue full");

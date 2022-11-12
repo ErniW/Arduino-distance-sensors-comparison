@@ -17,6 +17,7 @@ class Queue{
 public:
   int state;
   Queue(int max);
+  ~Queue();
   void push(int val);
   int pop();
   void printDirection(int number);

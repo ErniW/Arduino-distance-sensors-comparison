@@ -16,6 +16,7 @@ void loop(){
   average->append(getDistance(TRIG_PIN,ECHO_PIN));
 
   Serial.println(average->get());
+  // average->printArray();
   delay(20);
 }
  

@@ -22,22 +22,22 @@ Average::Average(size_t size){
 };
 
 void Average::append(int newVal){
-  Node* temp = this->head->next;
-  this->total -= this->head->value;
-  delete this->head;
-  this->head = temp;
+  Node* temp = head->next;
+  total -= head->value;
+  delete head;
+  head = temp;
   
-  this->tail->next = new Node(newVal);
-  this->tail = this->tail->next;
-  this->total += newVal;
+  tail->next = new Node(newVal);
+  tail = tail->next;
+  total += newVal;
 };
 
 int Average::get(){
-  return this->total / this->size;
+  return total / size;
 };
 
 void Average::printArray(){
-  Node* current = this->head;
+  Node* current = head;
   while(current){
     Serial.print(current->value);
     Serial.print(',');
