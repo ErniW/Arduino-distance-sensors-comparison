@@ -68,13 +68,16 @@ There is a library named New Ping. Notice how single and multiple sensors are de
 - *The sensor accuracy can be improved with thermometer (speed of sound vary with changes in air temperature).*
 
 ## DFRobot Gravity URM07
-https://wiki.dfrobot.com/URM07-UART_Ultrasonic_Sensor_SKU__SEN0153
+Full guide: https://wiki.dfrobot.com/URM07-UART_Ultrasonic_Sensor_SKU__SEN0153
+
+*Code provided in the above link is made for Arduino Leonardo (Atmega 32u4) Serial and Serial1 ports. I' made a software serial example to make it work on Arduino UNO.*
+
 ### Maximum range: 
 **20-750cm**
 ### Notes:
 - *URM07 has built-in temperature sensor.*
 - *URM07 communicates via Serial.*
-- *Detecting angle is 60 degrees, it's important if you intentionally want to detect surrounding things.*
+- *Detecting angle is 60 degrees, it's important if you intentionally want to detect surrounding things so the sensor is not suitable for narrow spaces.*
 - *You can have many of sensors on single bus by changing their addresses.*
 
 ## DFRobot Gravity URM09
@@ -84,6 +87,7 @@ https://wiki.dfrobot.com/URM09_Ultrasonic_Sensor_(Gravity-I2C)_(V1.0)_SKU_SEN030
 ### Notes:
 - *URM09 communicates via i2c. It also has its analog equivalent available to purchase.*
 - *URM09 has built-in temperature sensor.*
+- *URM09 has very large measurement angle, but not as high as other DFRobot mentioned here.*
 
 ## DFRobot Gravity URM37 v5
 https://wiki.dfrobot.com/URM37_V5.0_Ultrasonic_Sensor_SKU_SEN0001_
@@ -93,6 +97,7 @@ https://wiki.dfrobot.com/URM37_V5.0_Ultrasonic_Sensor_SKU_SEN0001_
 - *URM37 communicates via Serial but it has various operation modes. It has additional features comparing it to other DFRobot sensors mentioned above.*
 - *URM37 has built-in temperature sensor.*
 - *URM37 has a button to switch from Serial (TTL) to RS232 communication. Do not play with that!*
+- *URM37 has very large measurement angle.*
 
 ## Sharp GP2Y0A41SK0F and Sharp GP2Y0A21YK0F
 *Sensors are similar.*
@@ -105,7 +110,7 @@ https://wiki.dfrobot.com/URM37_V5.0_Ultrasonic_Sensor_SKU_SEN0001_
 
 ### Notes:
 - **Analog sensors win in terms of simplicity of connection and they're very accurate.**
-- *They have a large blind spot (13.3% / 12.5% of their total range).*
+- *They have a large blind spot (13.3% / 12.5% of their total range) which must be taken into account.*
 - *Theoretically you can compute polynomial regression model to calibrate your sensor to improve accuracy. I guess my students aren't proficient in machine learning nor statistics so I won't explain it further.*
 - *Sunlight can cause noise in measurements.*
 

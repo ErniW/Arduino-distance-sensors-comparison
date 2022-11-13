@@ -57,28 +57,28 @@ int Queue::pop(){
 }
 
 void Queue::printDirection(int number){
-    switch (number) {
-        case 1:
-          Serial.print("LEFT");
-          break;
-        case 2:
-          Serial.print("RIGHT");
-          break;
-        case 3:
-          Serial.print("UP");
-          break;
-        case 4:
-          Serial.print("DOWN");
-          break;
-        case 5:
-          Serial.print("NEAR");
-          break;
-        case 6:
-          Serial.print("FAR");
-          break;
-        default:
-          Serial.print("NONE");
-    } 
+  switch (number) {
+    case 1:
+      Serial.print("LEFT");
+      break;
+    case 2:
+      Serial.print("RIGHT");
+      break;
+    case 3:
+      Serial.print("UP");
+      break;
+    case 4:
+      Serial.print("DOWN");
+      break;
+    case 5:
+      Serial.print("NEAR");
+      break;
+    case 6:
+      Serial.print("FAR");
+      break;
+    default:
+      Serial.print("NONE");
+  } 
 }
 
 void Queue::print(){
