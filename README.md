@@ -50,11 +50,11 @@ Before using this sensor, **lower your expectations, otherwise the disappointmen
 - 250cm is fine to measure a person walking toward your project.
 
 ### How to fix the problem with hanging zeroes?
-There are many variants of this sensor. However, chepest version has issues you can read about here: http://www.therandomlab.com/2015/05/repair-and-solve-faulty-hc-sr04.html **to be honest using it without the proposed solutions is worthless.**
+There are many variants of this sensor. However, chepest version has issues you can read about here: http://www.therandomlab.com/2015/05/repair-and-solve-faulty-hc-sr04.html **to be honest using the cheapest no-name sensors without the proposed solutions is worthless.**
 - Use the included code according to mentioned article (it's in comment section!). I made some modifications to it.
-- Solder the 10k resistor according to the picture.
-- Add 100uf capacitor.
-- Other solution I found personally: Use quick and dirty solution to reset the sensor by switching it on and off via transistor. Use it only with long intervals of measurements, you probably decrease its lifetime by a significant value.
+- **Solder the 10k resistor according to the picture. This prevents from hanging.**
+- Add 470-1000uf capacitor between 5V and GND. Unfortunately we don't see any difference.
+- Quick and dirty solution I found personally: reset the sensor by switching it on and off via transistor. Use it only with long intervals of measurements, you probably decrease its lifetime by a significant value.
 
 There is a library named New Ping. Notice how single and multiple sensors are declared.
 
