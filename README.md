@@ -42,30 +42,32 @@
 # Review of results:
 
 ## HC-SR04
-Before using this sensor, **lower your expectations, otherwise the disappointment will hit you hard. People who praises the quality of sensor use them in particular case measuring large and flat objects.** Sensor gives a good result if it gets them, which is difficult.
+Before using this sensor, **lower your expectations, otherwise the disappointment will hit you hard. People who praise the quality of sensor use them in particular case measuring large and flat objects.** Sensor provides a good result if it gets the object, which in some cases is difficult.
 
 ### Maximum range:
-- **Depending on vendor's datasheet it has up to 4 meters range but there is no way to use it effectively for distance over approx 2 meters unless you measure a distance to a large flat object like a car or a wall.**
-- If your project is controlled via hand, after 50cm it will have difficulties detecting it.
-- 250cm is fine to measure a person walking toward your project.
+- **Some vendor's datasheets declares up to 4 meters range. Unfortunately there is no way to use it effectively for distance over approx 2.5 meters unless you measure a distance to a large flat surface. It's rarely the case during our classes.**
+- Distance to hand is up to 50cm.
+- Measuring distance to a person walking toward your project is up to 200cm.
+- Small object on a table is up to 1m.
 
-### How to fix the problem with hanging zeroes?
+### How to fix the problem with hanging?
 There are many variants of this sensor. However, chepest version has issues you can read about here: http://www.therandomlab.com/2015/05/repair-and-solve-faulty-hc-sr04.html **to be honest using the cheapest no-name sensors without the proposed solutions is worthless.**
 - Use the included code according to mentioned article (it's in comment section!). I made some modifications to it.
 - **Solder the 10k resistor according to the picture. This prevents from hanging.**
 - Add 470-1000uf capacitor between 5V and GND. Unfortunately we don't see any difference.
 - Quick and dirty solution I found personally: reset the sensor by switching it on and off via transistor. Use it only with long intervals of measurements, you probably decrease its lifetime by a significant value.
 
-There is a library named New Ping. Notice how single and multiple sensors are declared.
+There is a **New Ping** library. Notice how single and multiple sensors are declared.
 
 ### Notes:
-- *Using the New Ping library without any fixes seems resonable with the HC-SR04 from Sparkfun, other (the cheapest) will eventually hang and return zeroes.*
-- *The sensor will sometimes returns zeroes no matter what. Depending on project you can discard the zeroes or measure an average of values. Using constrains in your code to limit the distance only to what you want to measure - for example hand between 5cm and 50cm.*
-- **Sensor is fine for learning or very basic usage in most cases (but not all). Otherwise it will be unbearable. You should aim for different sensor when trying to control something with hands or detect small objects.**
-- *It can't measure thin objects and catches noise from narrow and messy locations. Based on my experience many soft materials are a challenge.*
-- *Reading many sensors can be slow. Computing averages of results to reduce noise would be O(M * N) slower.*
-- *Hacks mentioned makes the sensor work louder, you can hear the clicks.*
-- *The sensor accuracy can be improved with thermometer (speed of sound vary with changes in air temperature).*
+- *It seems that only the cheapest versions require the mentioned hacks.*
+- **You should aim for different sensor when trying to control something with hands or detect small, non-flat objects.**
+- *I provided various averaging methods, one of them uses linked list data structure in which you don't have to shift all the values each time.* **Without discarding incorrect zeroes there is no benefit of averaging. Implementation depends on your project.**
+- *Reading multiple sensors can be slow. Computing averages of results to reduce noise would be O(M * N) slower.*
+- *When increasing maximum range, increase the delay between measurments to avoid random noise caused by timed-out measurements.*
+- *In code without New Ping to change maximum distance change the number in pulseIn function.*
+- *Hack with resistor makes the sensor work louder, you can hear the clicks.*
+- *The sensor's accuracy can be improved with thermometer (speed of sound varies with air temperature).*
 
 ## DFRobot Gravity URM07
 Full guide: https://wiki.dfrobot.com/URM07-UART_Ultrasonic_Sensor_SKU__SEN0153
