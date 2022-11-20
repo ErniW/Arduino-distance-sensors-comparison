@@ -61,13 +61,15 @@ There is a **New Ping** library. Notice how single and multiple sensors are decl
 
 ### Notes:
 - *It seems that only the cheapest versions require the mentioned hacks.*
-- **You should aim for different sensor when trying to control something with hands or detect small, non-flat objects.**
-- *I provided various averaging methods, one of them uses linked list data structure in which you don't have to shift all the values each time.* **Without discarding incorrect zeroes there is no benefit of averaging. Implementation depends on your project.**
+- **You should choose different sensor when trying to control something with hands or detect small, non-flat objects.**
+- *I provided various averaging methods, it makes sense when high noise is expected. One of them uses linked list data structure in which you don't have to shift all the values each time.* **Without discarding incorrect zeroes there is no benefit of averaging. Implementation depends on your project so it's not the solution to fit all projects.**
 - *Reading multiple sensors can be slow. Computing averages of results to reduce noise would be O(M * N) slower.*
 - *When increasing maximum range, increase the delay between measurments to avoid random noise caused by timed-out measurements.*
 - *In code without New Ping to change maximum distance change the number in pulseIn function.*
 - *Hack with resistor makes the sensor work louder, you can hear the clicks.*
-- *The sensor's accuracy can be improved with thermometer (speed of sound varies with air temperature).*
+- *The sensor's accuracy can be improved with thermometer (speed of sound varies with air temperature https://www.omnicalculator.com/physics/speed-of-sound TODO:convert HC-04 formula to compensate temperature).*
+- *The code without zeroes implements a linked list which distinguishes between incorrect measurements and the zero as an actual value (when value is zero more then 4 times in a row).*
+
 
 ## DFRobot Gravity URM07
 Full guide: https://wiki.dfrobot.com/URM07-UART_Ultrasonic_Sensor_SKU__SEN0153
