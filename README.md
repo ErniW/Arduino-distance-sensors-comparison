@@ -81,7 +81,7 @@ Full guide: https://wiki.dfrobot.com/URM07-UART_Ultrasonic_Sensor_SKU__SEN0153
 ### Notes:
 - *URM07 has built-in temperature sensor.*
 - *URM07 communicates via Serial.*
-- *Detecting angle is 60 degrees, it's important if you intentionally want to detect surrounding things so the sensor is not suitable for narrow spaces.*
+- *Detecting angle is 60 degrees, it's important if you intentionally want to detect surrounding things so the sensor is not suitable for narrow spaces. However, it looks like it's better than URM37.*
 - *You can have many of sensors on single bus by changing their addresses.*
 
 ## DFRobot Gravity URM09
@@ -101,7 +101,7 @@ https://wiki.dfrobot.com/URM37_V5.0_Ultrasonic_Sensor_SKU_SEN0001_
 - *URM37 communicates via Serial but it has various operation modes. It has additional features comparing it to other DFRobot sensors mentioned above.*
 - *URM37 has built-in temperature sensor.*
 - *URM37 has a button to switch from Serial (TTL) to RS232 communication. Do not play with that!*
-- *URM37 has very large measurement angle.*
+- *URM37 has very large measurement angle, it grabs everything and can't work correctly inside narrow hallway. It's suitable for large scale measurements.*
 
 ## Sharp GP2Y0A41SK0F and Sharp GP2Y0A21YK0F
 *Sensors are similar.*

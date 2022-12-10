@@ -20,8 +20,8 @@ uint8_t receiveDistanceBuffer[8];
 void setup(){
   Serial.begin(9600);
   URM07.begin(19200);
-  // setBaudRate();
-  // URM07.begin(9600);
+  setBaudRate();
+  URM07.begin(9600);
 }
 
 void loop(){
