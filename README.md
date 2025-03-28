@@ -46,7 +46,7 @@ Before using this sensor, **lower your expectations, otherwise the disappointmen
 
 ### Maximum range:
 - **Some vendor's datasheets declares up to 4 meters range. Unfortunately there is no way to use it effectively for distance over approx 2.5 meters unless you measure a distance to a large flat surface. It's rarely the case during our classes.**
-- Distance to hand is up to 50cm.
+- Distance to hand is up to 50cm. After that distance, it depends on hand size.
 - Measuring distance to a person walking toward your project is up to 200cm.
 - Small object on a table is up to 1m.
 
@@ -62,13 +62,13 @@ There is a **New Ping** library. Notice how single and multiple sensors are decl
 ### Notes:
 - *It seems that only the cheapest versions require the mentioned hacks.*
 - **You should choose different sensor when trying to control something with hands or detect small, non-flat objects.**
-- *I provided various averaging methods, it makes sense when high noise is expected. One of them uses linked list data structure in which you don't have to shift all the values each time.* **Without discarding incorrect zeroes there is no benefit of averaging. Implementation depends on your project so it's not the solution to fit all projects.**
-- *Reading multiple sensors can be slow. Computing averages of results to reduce noise would be O(M * N) slower.*
+- *I provided average window method and count subsequent zeros, it makes sense when high noise is expected.* **Without discarding incorrect zeroes there is no benefit of averaging. Implementation depends on your project so it's not the solution to fit all projects.**
+- You can try to do a small margin between sensor and enclosure holes to be sure that you can't reach zero distance, in this case zero means only "out of range".
+- *Reading multiple sensors can be slow. Computing averages of results to reduce noise would be O(M * N) for full average window.*
 - *When increasing maximum range, increase the delay between measurments to avoid random noise caused by timed-out measurements.*
 - *In code without New Ping to change maximum distance change the number in pulseIn function.*
 - *Hack with resistor makes the sensor work louder, you can hear the clicks.*
 - *The sensor's accuracy can be improved with thermometer (speed of sound varies with air temperature https://www.omnicalculator.com/physics/speed-of-sound TODO:convert HC-04 formula to compensate temperature).*
-- *The code without zeroes implements a linked list which distinguishes between incorrect measurements and the zero as an actual value (when value is zero more then 4 times in a row).*
 
 
 ## DFRobot Gravity URM07

@@ -1,7 +1,10 @@
 #define TRIG_PIN 12
 #define ECHO_PIN 11
 
-int measurements[10];
+#define BUFFER_SIZE 10
+
+int valuesBuffer[BUFFER_SIZE];
+int bufferHead = 0;
 
 void setup(){
   Serial.begin(9600);
@@ -11,26 +14,25 @@ void setup(){
 }
 
 void loop(){
-  int average = computeAverage(measurements, 10);
+  int value = getDistance(TRIG_PIN, ECHO_PIN);
+  int average = updateAverage(value);
 
   Serial.println(average);
   delay(30);
 }
 
-int computeAverage(int* arr, size_t size){
-  int total = 0;
-  int newMeasurement = getDistance(TRIG_PIN, ECHO_PIN);
+int updateAverage(int value){
+  valuesBuffer[bufferHead] = value;
+  bufferHead++;
+  bufferHead %= BUFFER_SIZE;
 
-  for(int i=size-1; i>=0; i--){
-    arr[i+1] = arr[i];
-    total += arr[i+1];
+  int total = 0;
+
+  for(int i=0; i<BUFFER_SIZE; i++){
+    total += valuesBuffer[i];
   }
 
-  arr[0] = newMeasurement;
-  total += newMeasurement;
-
-  return total / size;
-
+  return total / BUFFER_SIZE;
 }
  
 int getDistance(int trigPin, int echoPin){
