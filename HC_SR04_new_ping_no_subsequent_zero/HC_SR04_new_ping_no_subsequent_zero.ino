@@ -1,7 +1,7 @@
 #include <NewPing.h>
 
 //Subsequent zero values below threshold are treated as noise.
-#define ZERO_THRESHOLD 10
+#define ZERO_THRESHOLD 5
 
 #define TRIGGER_PIN  12
 #define ECHO_PIN     11

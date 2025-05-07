@@ -11,8 +11,8 @@ void setup() {
 }
 
 void loop() {
-  delay(50);
   Serial.print("Ping: ");
   Serial.print(sonar.ping_cm());
   Serial.println("cm");
+  delay(50);
 }
